@@ -30,8 +30,12 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
-    "ngrok": "^2.2.9",
     "socket.io": "^2.0.1",
     "twit": "^2.2.5"
+  },
+  "dependencies": {
+    "ngrok": "^2.2.9",
+    "nodemon": "*"
   }
+
 }
