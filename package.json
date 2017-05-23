@@ -1,0 +1,37 @@
+{
+  "name": "real-time-web-twitter",
+  "version": "1.0.0",
+  "description": "real time web twitter application for final assignment @Hogeschool van Amsterdam, Minor webdevelopment 2017",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "expose": "ngrok http 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nooroel-imamdi/real-time-web-twitter.git"
+  },
+  "keywords": [
+    "real-time-web",
+    "twitter",
+    "HvA",
+    "minor",
+    "webdevelopment",
+    "CMD"
+  ],
+  "author": "Nooroel Imamdi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nooroel-imamdi/real-time-web-twitter/issues"
+  },
+  "homepage": "https://github.com/nooroel-imamdi/real-time-web-twitter#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "ngrok": "^2.2.9",
+    "socket.io": "^2.0.1",
+    "twit": "^2.2.5"
+  }
+}
