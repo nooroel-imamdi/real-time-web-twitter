@@ -1,9 +1,13 @@
 html,body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 ul {
+  list-style-type: none;
+}
+ul.tweets-list{
   list-style-type: none;
 }
 .btn {
@@ -33,4 +37,35 @@ ul {
   width: 3em;
   height: 100%;
   line-height: 1em;
+}
+section.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+section.tweets {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 90vh;
+  width: 40%;
+  padding: 1em 2em;
+  overflow: scroll;
+}
+span.offline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.8);
+  color: #fff;
+  padding: .5em;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+.hide{
+  display: none;
 }

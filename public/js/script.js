@@ -4,8 +4,18 @@
   var listHashtag = document.querySelector('.list-hashtag');
   var tweetCount = document.querySelector('.tweet-count');
   var tweetHashtag = document.querySelector('.tweet-hashtag');
+  var tweets = document.querySelector('.tweets');
+  var offline = document.querySelector('.offline');
 
-  socket.on('tweet_list_count', function (hashtag) {
+  var hashtagTitle = document.querySelector('.hashtag-title');
+  // hashtag buttons
+  var uelBtn = document.querySelector('.uel');
+  var uelfinalBtn = document.querySelector('.uelfinal');
+  var ajamanBtn = document.querySelector('.ajaman');
+  var mufc = document.querySelector('.mufc');
+  var afcajax = document.querySelector('.afcajax');
+
+  socket.on('tweet_list', function (hashtag) {
     // console.log(hashtag);
 
     // for (var i = 0; i < hashtag.length; i++) {
@@ -66,15 +76,200 @@
         //   tweetHashtag.innerHTML = hashtag[i].name;
         // }
       }
+
     }
+    uelBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var hashname = 'uel';
+
+      socket.emit('send-hash', hashname);
+
+      hashtagTitle.innerHTML = '#' + hashtag[0].name;
+
+
+
+      socket.on('tweet_list', function (hashtag) {
+        hashtag.forEach(function(object) {
+          if(object.name == hashname) {
+            console.log(object);
+
+            for (var i = 0; i < object.tweets.length; i++) {
+              var li = document.createElement('li');
+              li.innerHTML = object.tweets[i];
+              tweets.appendChild(li);
+            }
+          }
+        });
+      });
+    });
+    uelfinalBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var hashname = 'uelfinal';
+
+      socket.emit('send-hash', hashname);
+
+      hashtagTitle.innerHTML = '#' + hashtag[0].name;
+
+
+
+      socket.on('tweet_list', function (hashtag) {
+        hashtag.forEach(function(object) {
+          if(object.name == hashname) {
+            console.log(object);
+
+            for (var i = 0; i < object.tweets.length; i++) {
+              var li = document.createElement('li');
+              li.innerHTML = object.tweets[i];
+              tweets.appendChild(li);
+            }
+          }
+        });
+        // hashtag.forEach(function(e) {
+        //   console.log(e);
+        //   var li = document.createElement('li');
+        //   li.innerHTML = e.tweets;
+        //   tweets.appendChild(li);
+        //   tweets.scrollIntoView(true);
+        // });
+        // console.log(selectedHash)
+
+      });
+    });
+    mufc.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var hashname = 'mufc';
+
+      socket.emit('send-hash', hashname);
+
+      hashtagTitle.innerHTML = '#' + hashtag[0].name;
+
+
+
+      socket.on('tweet_list', function (hashtag) {
+        hashtag.forEach(function(object) {
+          if(object.name == hashname) {
+            console.log(object);
+
+            for (var i = 0; i < object.tweets.length; i++) {
+              var li = document.createElement('li');
+              li.innerHTML = object.tweets[i];
+              tweets.appendChild(li);
+            }
+          }
+        });
+        // hashtag.forEach(function(e) {
+        //   console.log(e);
+        //   var li = document.createElement('li');
+        //   li.innerHTML = e.tweets;
+        //   tweets.appendChild(li);
+        //   tweets.scrollIntoView(true);
+        // });
+        // console.log(selectedHash)
+
+      });
+    });
+    ajamanBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var hashname = 'ajaman';
+
+      socket.emit('send-hash', hashname);
+
+      hashtagTitle.innerHTML = '#' + hashtag[0].name;
+
+
+
+      socket.on('tweet_list', function (hashtag) {
+        hashtag.forEach(function(object) {
+          if(object.name == hashname) {
+            console.log(object);
+
+            for (var i = 0; i < object.tweets.length; i++) {
+              var li = document.createElement('li');
+              li.innerHTML = object.tweets[i];
+              tweets.appendChild(li);
+            }
+          }
+        });
+        // hashtag.forEach(function(e) {
+        //   console.log(e);
+        //   var li = document.createElement('li');
+        //   li.innerHTML = e.tweets;
+        //   tweets.appendChild(li);
+        //   tweets.scrollIntoView(true);
+        // });
+        // console.log(selectedHash)
+
+      });
+    });
+    afcajax.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var hashname = 'afcajax';
+
+      socket.emit('send-hash', hashname);
+
+      hashtagTitle.innerHTML = '#' + hashtag[0].name;
+
+      hashtag.forEach(function(object) {
+        if(object.name == hashname) {
+          console.log(object);
+
+          for (var i = 0; i < object.tweets.length; i++) {
+            var li = document.createElement('li');
+            li.innerHTML = object.tweets[i];
+            tweets.appendChild(li);
+          }
+        }
+
+
+      // socket.on('tweet_list', function (hashtag) {
+      //   hashtag.forEach(function(object) {
+      //     if(object.name == hashname) {
+      //       console.log(object);
+      //
+      //       for (var i = 0; i < object.tweets.length; i++) {
+      //         var li = document.createElement('li');
+      //         li.innerHTML = object.tweets[i];
+      //         tweets.appendChild(li);
+      //       }
+      //     }
+      //   });
+        // hashtag.forEach(function(e) {
+        //   console.log(e);
+        //   var li = document.createElement('li');
+        //   li.innerHTML = e.tweets;
+        //   tweets.appendChild(li);
+        //   tweets.scrollIntoView(true);
+        // });
+        // console.log(selectedHash)
+
+      });
+    });
 
     // tweetCount.innerHTML = hashtag;
     // tweetHashtag.innerHTML = hashtag.name;
   });
 
+  window.addEventListener('offline', function() {
+  	offline.classList.remove('hide');
+  }.bind(this));
+
+  window.addEventListener('online', function() {
+  	offline.classList.add('hide');
+  }.bind(this));
+
   // Error handler
-  // socket.on('error_handle', functon() {
-  //  console.log('Wrong...');
-  // });
+  socket.on('error_handle', function (errMsg) {
+    offline.classList.add('hide');
+  });
+
+  // disconnect
+  socket.on('disconnect', function (disconnect) {
+    offline.classList.add('hide');
+  });
 
 })();

@@ -57,7 +57,7 @@ var hashtag = [
   {
     name: "ajaman",
     count: 0,
-    tweets: ['ajaman']
+    tweets: []
   },
   {
     name: "mufc",
@@ -84,33 +84,15 @@ stream.on('tweet', function (tweet) {
         // Get hashtag text and convert to lowercase and remove ' + "
         var getHashTag = tweetHashtags[h].text.toLowerCase().replace(/"/g, '').replace(/'/g, '');
 
-
-
         for(var i = 0; i < hashtag.length; i++)
           if(hashtag[i].name === getHashTag) {
             hashtag[i].count++;
             hashtag[i].tweets.push(tweet.text);
             tweetCounts++;
-            io.emit('tweet_list_count', hashtag);
+            io.emit('tweet_list', hashtag);
           }
-          // if(getHashTag === 'ajaman') {
-          //   ajaman++;
-          // }
-          // if(getHashTag === 'uel')  {
-          //   uel++;
-          // }
-          // if(getHashTag === 'uelfinal')  {
-          //   uelfinal++;
-          // }
-          // if(getHashTag === 'afcajax')  {
-          //   uelfinal++;
-          // }
         }
       }
-      var tweetText = tweet.text;
-      // console.log(tweetText);
-
-      // if()
   }
 });
 
@@ -132,7 +114,7 @@ stream.on('connected', function () {
 
 // Disconnected Twitter API and emit to client
 stream.on('disconnect', function (disconnect) {
-  io.emit('error_handle', disconnect);
+  io.emit('disconnect', disconnect);
   console.log('disconnected');
 });
 
